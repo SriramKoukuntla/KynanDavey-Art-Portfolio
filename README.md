@@ -1,12 +1,14 @@
 # Kynan Davey - Art Portfolio Website
 
-A modern, responsive portfolio website showcasing the artistic works of Kynan Davey.
+A modern, responsive React portfolio website showcasing the artistic works of Kynan Davey.
 
 ## Features
 
+- **React-Based**: Built with React for modern, maintainable code
 - **Modern Design**: Clean, elegant design with a dark theme and gold accents
 - **Responsive Layout**: Fully responsive design that works on all devices
-- **Smooth Animations**: Fade-in animations and smooth scrolling
+- **Smooth Animations**: Fade-in animations and smooth scrolling using React hooks
+- **Component-Based**: Modular React components for easy maintenance
 - **Portfolio Sections**:
   - Illustrative Works
   - Ceramic Works
@@ -21,43 +23,56 @@ A modern, responsive portfolio website showcasing the artistic works of Kynan Da
 
 ### Prerequisites
 
-No special prerequisites needed! Just a modern web browser.
+- Node.js (v14 or higher)
+- npm or yarn
 
 ### Installation
 
 1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. That's it! The website is ready to use.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### Local Development
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-If you want to run a local server (recommended for development):
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-**Using Python:**
+The page will reload automatically when you make changes.
+
+### Building for Production
+
+To create a production build:
+
 ```bash
-# Python 3
-python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
+npm run build
 ```
 
-**Using Node.js:**
-```bash
-npx http-server
-```
-
-Then open `http://localhost:8000` in your browser.
+This creates an optimized production build in the `build` folder.
 
 ## File Structure
 
 ```
 KynanDavey-Art-Portfolio/
 │
-├── index.html          # Main HTML file
-├── styles.css          # All styling and responsive design
-├── script.js           # JavaScript for interactivity
-└── README.md           # This file
+├── public/
+│   └── index.html          # HTML template
+├── src/
+│   ├── components/        # React components
+│   │   ├── Navbar.js
+│   │   ├── Hero.js
+│   │   ├── Gallery.js
+│   │   ├── PortfolioSection.js
+│   │   ├── TypographySection.js
+│   │   └── Footer.js
+│   ├── App.js              # Main App component
+│   ├── index.js            # React entry point
+│   └── index.css           # Global styles
+├── package.json            # Dependencies and scripts
+└── README.md               # This file
 ```
 
 ## Customization
@@ -66,25 +81,27 @@ KynanDavey-Art-Portfolio/
 
 Replace the placeholder images in the gallery sections:
 
-1. Add your image files to an `images/` folder
-2. Update the HTML in `index.html`:
-   ```html
-   <div class="gallery-item">
-       <img src="images/your-image.jpg" alt="Description">
-   </div>
+1. Add your image files to `public/images/` folder
+2. Update the Gallery component or PortfolioSection items:
+   ```jsx
+   <PortfolioSection
+     id="illustrative"
+     title="Illustrative Works"
+     items={[
+       { src: '/images/illustration1.jpg', alt: 'Description' },
+       { src: '/images/illustration2.jpg', alt: 'Description' }
+     ]}
+   />
    ```
-3. Update the CSS in `styles.css` to style the images:
-   ```css
-   .gallery-item img {
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-   }
+
+3. Update the Gallery component to render images:
+   ```jsx
+   <img src={item.src} alt={item.alt} />
    ```
 
 ### Changing Colors
 
-Edit the CSS variables in `styles.css`:
+Edit the CSS variables in `src/index.css`:
 ```css
 :root {
     --primary-color: #1a1a1a;
@@ -96,19 +113,18 @@ Edit the CSS variables in `styles.css`:
 
 ### Adding More Sections
 
-1. Add a new section in `index.html`:
-   ```html
-   <section id="new-section" class="portfolio-section">
-       <div class="container">
-           <h2 class="section-title">New Section</h2>
-           <!-- Your content here -->
-       </div>
-   </section>
+1. Add a new PortfolioSection in `src/App.js`:
+   ```jsx
+   <PortfolioSection
+     id="new-section"
+     title="New Section"
+     items={['Item 1', 'Item 2']}
+   />
    ```
 
-2. Add a navigation link in the navbar:
-   ```html
-   <li><a href="#new-section" class="nav-link">New Section</a></li>
+2. Add a navigation link in `src/components/Navbar.js`:
+   ```jsx
+   { id: 'new-section', label: 'New Section' }
    ```
 
 ## Browser Support
