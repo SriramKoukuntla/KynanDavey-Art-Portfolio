@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Lightbox from '../components/Lightbox';
+import powerRangers from '../assets/Art/IllustrativeWorks/PowerRangers.png';
+import fractured from '../assets/Art/IllustrativeWorks/Fractured.png';
+import cuteDucks from '../assets/Art/IllustrativeWorks/CuteDucks.png';
+import postIts from '../assets/Art/IllustrativeWorks/PostIts.png';
 
-const IllustrativeWorks = ({ powerRangers, fractured, cuteDucks, postIts }) => {
+const IllustrativeWorks = () => {
   const [lightboxImage, setLightboxImage] = useState(null);
   const [lightboxAlt, setLightboxAlt] = useState('');
 

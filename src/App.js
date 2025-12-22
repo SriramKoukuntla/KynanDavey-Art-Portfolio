@@ -6,12 +6,6 @@ import TypographySection from './components/TypographySection';
 import Footer from './components/Footer';
 import IllustrativeWorks from './sections/IllustrativeWorks';
 
-// Import Illustrative Works
-import CuteDucks from './assets/Art/IllustrativeWorks/CuteDucks.png';
-import Fractured from './assets/Art/IllustrativeWorks/Fractured.png';
-import PostIts from './assets/Art/IllustrativeWorks/PostIts.png';
-import PowerRangers from './assets/Art/IllustrativeWorks/PowerRangers.png';
-
 // Import Ceramic Works
 import Cups from './assets/Art/CeramicWorks/Cups.png';
 import Bottle from './assets/Art/CeramicWorks/Bottle.png';
@@ -113,12 +107,7 @@ function App() {
       <Navbar />
       <Hero />
       
-      <IllustrativeWorks 
-        powerRangers={PowerRangers}
-        fractured={Fractured}
-        cuteDucks={CuteDucks}
-        postIts={PostIts}
-      />
+      <IllustrativeWorks />
       
       <PortfolioSection
         id="ceramic"
