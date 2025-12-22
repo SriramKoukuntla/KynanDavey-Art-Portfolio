@@ -7,22 +7,6 @@ import Footer from './components/Footer';
 import IllustrativeWorks from './sections/IllustrativeWorks';
 import CeramicWorks from './sections/CeramicWorks';
 
-// Import Illustrative Works
-import CuteDucks from './assets/Art/IllustrativeWorks/CuteDucks.png';
-import Fractured from './assets/Art/IllustrativeWorks/Fractured.png';
-import PostIts from './assets/Art/IllustrativeWorks/PostIts.png';
-import PowerRangers from './assets/Art/IllustrativeWorks/PowerRangers.png';
-
-// Import Ceramic Works
-import Cups from './assets/Art/CeramicWorks/Cups.png';
-import Bottle from './assets/Art/CeramicWorks/Bottle.png';
-import FrogsInTree from './assets/Art/CeramicWorks/FrogsInTree.png';
-import FrogYoga from './assets/Art/CeramicWorks/FrogYoga.png';
-import HeartBrokenFrog from './assets/Art/CeramicWorks/HeartBrokenFrog.png';
-import Purfume from './assets/Art/CeramicWorks/Purfume.png';
-import Sunflower from './assets/Art/CeramicWorks/Sunflower.png';
-import Trunk from './assets/Art/CeramicWorks/Trunk.png';
-
 // Import Oil Paintings
 import Hunger from './assets/Art/OilPaintingWorks/Hunger.png';
 import SelfPastNFuture from './assets/Art/OilPaintingWorks/SelfPastNFuture.png';
@@ -63,17 +47,7 @@ function App() {
     }, 100);
   }, []);
 
-  // Image paths for each portfolio section
-  const ceramicWorks = [
-    Bottle,
-    Cups,
-    FrogsInTree,
-    FrogYoga,
-    HeartBrokenFrog,
-    Purfume,
-    Sunflower,
-    Trunk
-  ];
+
 
   const oilPaintings = [
     Hunger,
@@ -114,15 +88,13 @@ function App() {
       <Navbar />
       <Hero />
       
-      <IllustrativeWorks 
-        powerRangers={PowerRangers}
-        fractured={Fractured}
-        cuteDucks={CuteDucks}
-        postIts={PostIts}
-      />
+      <IllustrativeWorks />
       
-      <CeramicWorks items={ceramicWorks} />
+      <CeramicWorks />
       
+
+
+  
       <PortfolioSection
         id="painting"
         title="Oil Painting Works"
