@@ -6,14 +6,9 @@ import TypographySection from './components/TypographySection';
 import Footer from './components/Footer';
 import IllustrativeWorks from './sections/IllustrativeWorks';
 import CeramicWorks from './sections/CeramicWorks';
-
-// Import Oil Paintings
-import Hunger from './assets/Art/OilPaintingWorks/Hunger.png';
-import SelfPastNFuture from './assets/Art/OilPaintingWorks/SelfPastNFuture.png';
-
-// Import Acrylic Paintings
-import Blotches from './assets/Art/AcrylicPaintingWorks/Blotches.png';
-import Landscape from './assets/Art/AcrylicPaintingWorks/Landscape.png';
+import OilPaintingWorks from './sections/OilPaintingWorks';
+import AcrylicPaintingWorks from './sections/AcrylicPaintingWorks';
+import GraphicAndGameDesign from './sections/GraphicAndGameDesign';
 
 // Import Photography
 import BirdsEating from './assets/Art/PhotographicAndPhotoManipulationWorks/BirdsEating.png';
@@ -26,15 +21,6 @@ import Graphiti2 from './assets/Art/PhotographicAndPhotoManipulationWorks/Graphi
 import Lights from './assets/Art/PhotographicAndPhotoManipulationWorks/Lights.png';
 import POSTMORTEM from './assets/Art/PhotographicAndPhotoManipulationWorks/POSTMORTEM.png';
 
-// Import Graphic Design
-import Joji from './assets/Art/GraphicDesignWorks/Joji.png';
-import KendrickGoodKidMAAD from './assets/Art/GraphicDesignWorks/KendrickGoodKidMAAD.png';
-import TameImpalla from './assets/Art/GraphicDesignWorks/TameImpalla.png';
-
-// Import Game Design
-import DigitalArt1 from './assets/Art/GameDesign&DigitalArt/DigitalArt1.png';
-import DigitalArt2 from './assets/Art/GameDesign&DigitalArt/DigitalArt2.png';
-import DigitalArt3 from './assets/Art/GameDesign&DigitalArt/DigitalArt3.png';
 
 function App() {
   useEffect(() => {
@@ -49,16 +35,6 @@ function App() {
 
 
 
-  const oilPaintings = [
-    Hunger,
-    SelfPastNFuture
-  ];
-
-  const acrylicPaintings = [
-    Blotches,
-    Landscape
-  ];
-
   const photography = [
     BirdsEating,
     BirdsFlying,
@@ -71,17 +47,6 @@ function App() {
     POSTMORTEM
   ];
 
-  const graphicDesign = [
-    Joji,
-    KendrickGoodKidMAAD,
-    TameImpalla
-  ];
-
-  const gameDesign = [
-    DigitalArt1,
-    DigitalArt2,
-    DigitalArt3
-  ];
 
   return (
     <div className="App">
@@ -92,20 +57,14 @@ function App() {
       
       <CeramicWorks />
       
+      
+      <OilPaintingWorks />
+      
+      <AcrylicPaintingWorks />
+
+      <GraphicAndGameDesign />
 
 
-  
-      <PortfolioSection
-        id="painting"
-        title="Oil Painting Works"
-        items={oilPaintings}
-      />
-      
-      <PortfolioSection
-        title="Acrylic Painting Works"
-        items={acrylicPaintings}
-      />
-      
       <PortfolioSection
         id="photography"
         title="Photographic and Photo Manipulation Works"
@@ -114,16 +73,6 @@ function App() {
       
       <TypographySection />
       
-      <PortfolioSection
-        id="graphic-design"
-        title="Logo and Graphic Design Works"
-        items={graphicDesign}
-      />
-      
-      <PortfolioSection
-        title="Graphic and Game Design Works"
-        items={gameDesign}
-      />
       
       <Footer />
     </div>
