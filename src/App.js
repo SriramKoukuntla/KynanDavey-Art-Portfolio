@@ -4,12 +4,11 @@ import Hero from './components/Hero';
 import PortfolioSection from './components/PortfolioSection';
 import TypographySection from './components/TypographySection';
 import Footer from './components/Footer';
+import IllustrativeWorks from './sections/IllustrativeWorks';
 
 // Import Illustrative Works
 import CuteDucks from './assets/Art/IllustrativeWorks/CuteDucks.png';
-import Eyes from './assets/Art/IllustrativeWorks/Eyes.png';
 import Fractured from './assets/Art/IllustrativeWorks/Fractured.png';
-import Jungle from './assets/Art/IllustrativeWorks/Jungle.png';
 import PostIts from './assets/Art/IllustrativeWorks/PostIts.png';
 import PowerRangers from './assets/Art/IllustrativeWorks/PowerRangers.png';
 
@@ -64,15 +63,6 @@ function App() {
   }, []);
 
   // Image paths for each portfolio section
-  const illustrativeWorks = [
-    CuteDucks,
-    Eyes,
-    Fractured,
-    Jungle,
-    PostIts,
-    PowerRangers
-  ];
-
   const ceramicWorks = [
     Bottle,
     Cups,
@@ -123,16 +113,18 @@ function App() {
       <Navbar />
       <Hero />
       
-      <PortfolioSection
-        id="illustrative"
-        title="Illustrative Works"
-        items={illustrativeWorks}
+      <IllustrativeWorks 
+        powerRangers={PowerRangers}
+        fractured={Fractured}
+        cuteDucks={CuteDucks}
+        postIts={PostIts}
       />
       
       <PortfolioSection
         id="ceramic"
         title="Ceramic Works"
         items={ceramicWorks}
+        useCarousel={true}
       />
       
       <PortfolioSection

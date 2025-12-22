@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Lightbox from './Lightbox';
 
-const Gallery = ({ items, title, enableLightbox = false }) => {
+const Masonry = ({ items, enableLightbox = false }) => {
   const [visibleItems, setVisibleItems] = useState([]);
   const [lightboxImage, setLightboxImage] = useState(null);
   const [lightboxAlt, setLightboxAlt] = useState('');
-  const galleryRef = useRef(null);
+  const masonryRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,11 +28,11 @@ const Gallery = ({ items, title, enableLightbox = false }) => {
       }
     );
 
-    const galleryItems = galleryRef.current?.querySelectorAll('.gallery-item');
-    galleryItems?.forEach((item) => observer.observe(item));
+    const masonryItems = masonryRef.current?.querySelectorAll('.masonry-item');
+    masonryItems?.forEach((item) => observer.observe(item));
 
     return () => {
-      galleryItems?.forEach((item) => observer.unobserve(item));
+      masonryItems?.forEach((item) => observer.unobserve(item));
     };
   }, []);
 
@@ -50,28 +50,34 @@ const Gallery = ({ items, title, enableLightbox = false }) => {
 
   return (
     <>
-      <div className="gallery-grid" ref={galleryRef}>
+      <div className="masonry-container" ref={masonryRef}>
         {items.map((item, index) => {
-          // Check if item is a string (path) or object with src and alt
           const imageSrc = typeof item === 'string' ? item : item.src;
           const imageAlt = typeof item === 'string' ? `Artwork ${index + 1}` : (item.alt || `Artwork ${index + 1}`);
           
           return (
             <div
               key={index}
-              className={`gallery-item ${visibleItems.includes(index) ? 'visible' : ''} ${enableLightbox ? 'clickable' : ''}`}
+              className={`masonry-item ${visibleItems.includes(index) ? 'visible' : ''} ${enableLightbox ? 'clickable' : ''}`}
               data-index={index}
               onClick={() => enableLightbox && handleImageClick(imageSrc, imageAlt)}
             >
-              <div className="gallery-image-container">
+              <div className="masonry-image-wrapper">
                 <img 
                   src={imageSrc} 
                   alt={imageAlt}
                   loading="lazy"
+                  onLoad={(e) => {
+                    // Ensure image maintains aspect ratio
+                    const img = e.target;
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                  }}
                   onError={(e) => {
-                    // Fallback to placeholder if image fails to load
                     e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
+                    if (e.target.nextSibling) {
+                      e.target.nextSibling.style.display = 'flex';
+                    }
                   }}
                 />
                 <div className="placeholder-image" style={{ display: 'none' }}>
@@ -93,6 +99,5 @@ const Gallery = ({ items, title, enableLightbox = false }) => {
   );
 };
 
-export default Gallery;
-
+export default Masonry;
 
