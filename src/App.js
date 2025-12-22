@@ -5,6 +5,13 @@ import PortfolioSection from './components/PortfolioSection';
 import TypographySection from './components/TypographySection';
 import Footer from './components/Footer';
 import IllustrativeWorks from './sections/IllustrativeWorks';
+import CeramicWorks from './sections/CeramicWorks';
+
+// Import Illustrative Works
+import CuteDucks from './assets/Art/IllustrativeWorks/CuteDucks.png';
+import Fractured from './assets/Art/IllustrativeWorks/Fractured.png';
+import PostIts from './assets/Art/IllustrativeWorks/PostIts.png';
+import PowerRangers from './assets/Art/IllustrativeWorks/PowerRangers.png';
 
 // Import Ceramic Works
 import Cups from './assets/Art/CeramicWorks/Cups.png';
@@ -107,14 +114,14 @@ function App() {
       <Navbar />
       <Hero />
       
-      <IllustrativeWorks />
-      
-      <PortfolioSection
-        id="ceramic"
-        title="Ceramic Works"
-        items={ceramicWorks}
-        useCarousel={true}
+      <IllustrativeWorks 
+        powerRangers={PowerRangers}
+        fractured={Fractured}
+        cuteDucks={CuteDucks}
+        postIts={PostIts}
       />
+      
+      <CeramicWorks items={ceramicWorks} />
       
       <PortfolioSection
         id="painting"
