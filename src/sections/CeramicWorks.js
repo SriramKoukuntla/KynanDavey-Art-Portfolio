@@ -17,7 +17,7 @@ const CeramicWorks = () => {
     <section id="ceramic" className="portfolio-section">
       <div className="container">
         <h2 className="section-title">Ceramic Works</h2>
-        <Masonry items={items} enableLightbox={false} />
+        <Masonry items={items} enableLightbox={true} />
       </div>
     </section>
   );
