@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Typography = () => {
   // Typography playground state
-  const [playgroundText, setPlaygroundText] = useState('SAMPLE TEXT');
+  const [playgroundText, setPlaygroundText] = useState('ABCDE FGHIJK LMNOP QRS TUVWXYZ');
   const [fontWeight, setFontWeight] = useState('400');
   const [fontStyle, setFontStyle] = useState('normal');
   const [fontSize, setFontSize] = useState(48);
@@ -121,52 +121,6 @@ const Typography = () => {
                   onChange={(e) => setTextColor(e.target.value)}
                   className="playground-color"
                 />
-              </div>
-
-              <div className="control-group preset-buttons">
-                <label>Preset Samples</label>
-                <div className="preset-grid">
-                  <button
-                    onClick={() => {
-                      setPlaygroundText('SAMPLE TEXT');
-                      setFontSize(48);
-                      setLetterSpacing(0);
-                    }}
-                    className="preset-btn"
-                  >
-                    Sample Text
-                  </button>
-                  <button
-                    onClick={() => {
-                      setPlaygroundText('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                      setFontSize(36);
-                      setLetterSpacing(2);
-                    }}
-                    className="preset-btn"
-                  >
-                    Alphabet
-                  </button>
-                  <button
-                    onClick={() => {
-                      setPlaygroundText('1234567890');
-                      setFontSize(48);
-                      setLetterSpacing(0);
-                    }}
-                    className="preset-btn"
-                  >
-                    Numbers
-                  </button>
-                  <button
-                    onClick={() => {
-                      setPlaygroundText('The quick brown fox jumps over the lazy dog');
-                      setFontSize(32);
-                      setLetterSpacing(0);
-                    }}
-                    className="preset-btn"
-                  >
-                    Pangram
-                  </button>
-                </div>
               </div>
             </div>
 

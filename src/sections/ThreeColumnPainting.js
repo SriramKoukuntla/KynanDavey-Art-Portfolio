@@ -119,7 +119,7 @@ const ThreeColumnPainting = () => {
 
   return (
     <>
-      <section className="portfolio-section">
+      <section id="painting" className="portfolio-section">
         <div className="container">
           <div className="three-column-portfolio">
             {renderColumn('Oil Painting Works', oilPaintings, 'oil-paintings')}
