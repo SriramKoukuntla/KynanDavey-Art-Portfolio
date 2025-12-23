@@ -411,22 +411,22 @@ code {
 .overlap-top-left {
     top: 0;
     left: 0;
-    width: 60%;
-    max-width: 300px;
+    width: 65%;
+    max-width: 350px;
 }
 
 .overlap-middle-right {
-    top: 20%;
+    top: 30%;
     right: 0;
     width: 65%;
-    max-width: 320px;
+    max-width: 350px;
 }
 
 .overlap-bottom-left {
-    bottom: 0;
-    left: 15%;
-    width: 55%;
-    max-width: 280px;
+    bottom: 5%;
+    left: 0%;
+    width: 65%;
+    max-width: 350px;
 }
 
 /* Masonry Layout */
