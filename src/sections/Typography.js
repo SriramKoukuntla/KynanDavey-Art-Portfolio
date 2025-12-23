@@ -1,110 +1,222 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Gallery from '../components/Gallery';
+import React, { useState } from 'react';
 
 const Typography = () => {
-  const [visibleItems, setVisibleItems] = useState([]);
-  const typographyRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleItems((prev) => {
-              const id = entry.target.dataset.id;
-              if (!prev.includes(id)) {
-                return [...prev, id];
-              }
-              return prev;
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    const items = typographyRef.current?.querySelectorAll('.typography-item');
-    items?.forEach((item) => observer.observe(item));
-
-    return () => {
-      items?.forEach((item) => observer.unobserve(item));
-    };
-  }, []);
-
-  const greekAlphabet = [
-    ['Δ', 'Β', 'C', 'D', 'Ε', 'Γ', 'Γ', 'Η'],
-    ['Γ', 'Γ', 'J', 'K', 'L', 'M', 'Ν', 'Ο'],
-    ['Ρ', 'Ω', 'R', 'S', 'Τ', 'Υ', 'Υ', 'Υ'],
-    ['Υ', 'Σ', 'X', 'Φ', 'Ξ', 'Θ', 'Θ', 'Θ']
-  ];
+  // Typography playground state
+  const [playgroundText, setPlaygroundText] = useState('SAMPLE TEXT');
+  const [fontWeight, setFontWeight] = useState('400');
+  const [fontStyle, setFontStyle] = useState('normal');
+  const [fontSize, setFontSize] = useState(48);
+  const [letterSpacing, setLetterSpacing] = useState(0);
+  const [lineHeight, setLineHeight] = useState(1.2);
+  const [textColor, setTextColor] = useState('#d4af37');
 
   return (
     <section id="typography" className="portfolio-section">
       <div className="container">
-        <h2 className="section-title">Typographic and Card Design Works</h2>
+        <h2 className="section-title">Typography Playground</h2>
         
-        <Gallery items={['Card Design', 'Typography 1']} />
-        
-        <div className="typography-showcase" ref={typographyRef}>
-          <div className={`typography-item ${visibleItems.includes('card1') ? 'visible' : ''}`} data-id="card1">
-            <h3>2345678910 JQKA</h3>
-            <p>Playing card typography design</p>
-          </div>
-          <div className={`typography-item ${visibleItems.includes('card2') ? 'visible' : ''}`} data-id="card2">
-            <h3>JOKES ON YOU</h3>
-            <p>Experimental typography</p>
-          </div>
-        </div>
+        <div className="typography-playground">
+          <p className="playground-subtitle">Test the Sandpaper2 font family</p>
+          
+          <div className="playground-container">
+            <div className="playground-controls">
+              <div className="control-group">
+                <label htmlFor="playground-text">Text</label>
+                <input
+                  id="playground-text"
+                  type="text"
+                  value={playgroundText}
+                  onChange={(e) => setPlaygroundText(e.target.value)}
+                  className="playground-input"
+                  placeholder="Enter text to preview"
+                />
+              </div>
 
-        <div className="typography-grid">
-          <div className="typography-table">
-            <h3>Greek Alphabet Typography</h3>
-            <table className="greek-table">
-              <tbody>
-                {greekAlphabet.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {row.map((letter, colIndex) => (
-                      <td key={colIndex}>{letter}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+              <div className="control-group">
+                <label htmlFor="font-weight">Font Weight</label>
+                <select
+                  id="font-weight"
+                  value={fontWeight}
+                  onChange={(e) => {
+                    setFontWeight(e.target.value);
+                    if (e.target.value !== '400') {
+                      setFontStyle('normal');
+                    }
+                  }}
+                  className="playground-select"
+                >
+                  <option value="100">Thin</option>
+                  <option value="400">Regular</option>
+                  <option value="600">Semibold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </div>
 
-        <div className="quote-section">
-          <blockquote className="dune-quote">
-            "BLESS THE MAKER<br />
-            ΔND H7S WATER.<br />
-            BLESS THE COMING<br />
-            ΔND GOING OF H7M.<br />
-            MÁY H7S PASSAGE<br />
-            CLEANSE THE WORLD,<br />
-            ΔND KΞP THE WORLD<br />
-            FOR H7S PEOPLE."
-          </blockquote>
-          <p className="quote-attribution">
-            - DR. LŪĒT KYNĒS, DUNĒ.<br />
-            SANDSTONE 8:1.8
-          </p>
-        </div>
+              <div className="control-group">
+                <label htmlFor="font-style">Font Style</label>
+                <select
+                  id="font-style"
+                  value={fontStyle}
+                  onChange={(e) => {
+                    setFontStyle(e.target.value);
+                    if (e.target.value === 'italic') {
+                      setFontWeight('400');
+                    }
+                  }}
+                  className="playground-select"
+                  disabled={fontWeight !== '400'}
+                >
+                  <option value="normal">Normal</option>
+                  <option value="italic">Italic</option>
+                </select>
+              </div>
 
-        <div className="word-frequency">
-          <h3>Word Frequency Typography</h3>
-          <div className="word-grid">
-            <span className="word-large">the</span>
-            <span className="word-medium">like</span>
-            <span className="word-medium">about</span>
-            <span className="word-small">with</span>
-            <span className="word-small">your</span>
-            <span className="word-small">these</span>
-            <span className="word-small">my</span>
-            <span className="word-small">and</span>
-            <span className="word-small">look</span>
+              <div className="control-group">
+                <label htmlFor="font-size">Font Size: {fontSize}px</label>
+                <input
+                  id="font-size"
+                  type="range"
+                  min="12"
+                  max="120"
+                  value={fontSize}
+                  onChange={(e) => setFontSize(Number(e.target.value))}
+                  className="playground-slider"
+                />
+              </div>
+
+              <div className="control-group">
+                <label htmlFor="letter-spacing">Letter Spacing: {letterSpacing}px</label>
+                <input
+                  id="letter-spacing"
+                  type="range"
+                  min="-5"
+                  max="20"
+                  step="0.5"
+                  value={letterSpacing}
+                  onChange={(e) => setLetterSpacing(Number(e.target.value))}
+                  className="playground-slider"
+                />
+              </div>
+
+              <div className="control-group">
+                <label htmlFor="line-height">Line Height: {lineHeight}</label>
+                <input
+                  id="line-height"
+                  type="range"
+                  min="0.8"
+                  max="3"
+                  step="0.1"
+                  value={lineHeight}
+                  onChange={(e) => setLineHeight(Number(e.target.value))}
+                  className="playground-slider"
+                />
+              </div>
+
+              <div className="control-group">
+                <label htmlFor="text-color">Text Color</label>
+                <input
+                  id="text-color"
+                  type="color"
+                  value={textColor}
+                  onChange={(e) => setTextColor(e.target.value)}
+                  className="playground-color"
+                />
+              </div>
+
+              <div className="control-group preset-buttons">
+                <label>Preset Samples</label>
+                <div className="preset-grid">
+                  <button
+                    onClick={() => {
+                      setPlaygroundText('SAMPLE TEXT');
+                      setFontSize(48);
+                      setLetterSpacing(0);
+                    }}
+                    className="preset-btn"
+                  >
+                    Sample Text
+                  </button>
+                  <button
+                    onClick={() => {
+                      setPlaygroundText('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+                      setFontSize(36);
+                      setLetterSpacing(2);
+                    }}
+                    className="preset-btn"
+                  >
+                    Alphabet
+                  </button>
+                  <button
+                    onClick={() => {
+                      setPlaygroundText('1234567890');
+                      setFontSize(48);
+                      setLetterSpacing(0);
+                    }}
+                    className="preset-btn"
+                  >
+                    Numbers
+                  </button>
+                  <button
+                    onClick={() => {
+                      setPlaygroundText('The quick brown fox jumps over the lazy dog');
+                      setFontSize(32);
+                      setLetterSpacing(0);
+                    }}
+                    className="preset-btn"
+                  >
+                    Pangram
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="playground-preview">
+              <div className="preview-label">Live Preview</div>
+              <div
+                className="preview-text"
+                style={{
+                  fontFamily: "'Sandpaper2', sans-serif",
+                  fontWeight: fontWeight,
+                  fontStyle: fontStyle,
+                  fontSize: `${fontSize}px`,
+                  letterSpacing: `${letterSpacing}px`,
+                  lineHeight: lineHeight,
+                  color: textColor,
+                }}
+              >
+                {playgroundText || 'Enter text to preview'}
+              </div>
+              <div className="preview-info">
+                <div className="info-item">
+                  <span className="info-label">Font:</span>
+                  <span className="info-value">Sandpaper2</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Weight:</span>
+                  <span className="info-value">
+                    {fontWeight === '100' ? 'Thin' : 
+                     fontWeight === '400' ? 'Regular' : 
+                     fontWeight === '600' ? 'Semibold' : 'Bold'}
+                  </span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Style:</span>
+                  <span className="info-value">{fontStyle === 'italic' ? 'Italic' : 'Normal'}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Size:</span>
+                  <span className="info-value">{fontSize}px</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Letter Spacing:</span>
+                  <span className="info-value">{letterSpacing}px</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Line Height:</span>
+                  <span className="info-value">{lineHeight}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
