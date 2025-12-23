@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Gallery from './Gallery';
+import Gallery from '../components/Gallery';
 
-const TypographySection = () => {
+const Typography = () => {
   const [visibleItems, setVisibleItems] = useState([]);
   const typographyRef = useRef(null);
 
@@ -112,6 +112,6 @@ const TypographySection = () => {
   );
 };
 
-export default TypographySection;
+export default Typography;
 
 
