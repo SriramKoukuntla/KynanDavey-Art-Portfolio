@@ -6,9 +6,7 @@ import TypographySection from './components/TypographySection';
 import Footer from './components/Footer';
 import IllustrativeWorks from './sections/IllustrativeWorks';
 import CeramicWorks from './sections/CeramicWorks';
-import OilPaintingWorks from './sections/OilPaintingWorks';
-import AcrylicPaintingWorks from './sections/AcrylicPaintingWorks';
-import GraphicAndGameDesign from './sections/GraphicAndGameDesign';
+import ThreeColumnPainting from './sections/ThreeColumnPainting';
 
 // Import Photography
 import BirdsEating from './assets/Art/PhotographicAndPhotoManipulationWorks/BirdsEating.png';
@@ -51,18 +49,16 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+
       <Hero />
       
+
       <IllustrativeWorks />
       
       <CeramicWorks />
       
       
-      <OilPaintingWorks />
-      
-      <AcrylicPaintingWorks />
-
-      <GraphicAndGameDesign />
+      <ThreeColumnPainting />
 
 
       <PortfolioSection

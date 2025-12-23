@@ -326,6 +326,109 @@ code {
     object-fit: cover;
 }
 
+/* Three Column Portfolio Layout */
+.three-column-portfolio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-column-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.portfolio-column-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.portfolio-column-masonry {
+    width: 100%;
+}
+
+.portfolio-column-masonry .masonry-item {
+    margin-bottom: 1.5rem;
+    break-inside: avoid;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Graphic and Game Design Overlapping Layout */
+.graphic-game-overlap-container {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    margin-top: 0;
+}
+
+.overlap-item {
+    position: absolute;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.overlap-item:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.overlap-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.overlap-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.overlap-top-left {
+    top: 0;
+    left: 0;
+    width: 60%;
+    max-width: 300px;
+}
+
+.overlap-middle-right {
+    top: 20%;
+    right: 0;
+    width: 65%;
+    max-width: 320px;
+}
+
+.overlap-bottom-left {
+    bottom: 0;
+    left: 15%;
+    width: 55%;
+    max-width: 280px;
+}
+
 /* Masonry Layout */
 .masonry-container {
     margin-top: 3rem;
@@ -863,6 +966,36 @@ code {
     .illustrative-middle-bottom {
         grid-column: 1;
         grid-row: 4;
+    }
+
+    .three-column-portfolio {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .portfolio-column-title {
+        font-size: 1.75rem;
+    }
+
+    .graphic-game-overlap-container {
+        min-height: 500px;
+    }
+
+    .overlap-top-left {
+        width: 50%;
+        max-width: 250px;
+    }
+
+    .overlap-middle-right {
+        width: 55%;
+        max-width: 280px;
+        top: 15%;
+    }
+
+    .overlap-bottom-left {
+        width: 45%;
+        max-width: 230px;
+        left: 10%;
     }
 
     .masonry-container {
