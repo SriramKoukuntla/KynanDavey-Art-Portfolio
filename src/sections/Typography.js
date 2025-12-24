@@ -1,24 +1,184 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import Lightbox from '../components/Lightbox';
+
+import CardDesign2 from '../assets/Art/TypographicWorks/CardDesign2.png';
+import HisokaCards from '../assets/Art/TypographicWorks/HisokaCards.png';
+import JokesOnYou from '../assets/Art/TypographicWorks/JokesOnYou.png';
+import SandstoneEx from '../assets/Art/TypographicWorks/Sandstone Ex.png';
+import Sandstone from '../assets/Art/TypographicWorks/Sandstone.png';
+import Sandpaper from '../assets/Art/TypographicWorks/Sandpaper.png';
+import Sandcastle from '../assets/Art/TypographicWorks/Sandcastle.png';
+
+const cardDesignItems = [
+  CardDesign2, 
+  HisokaCards, 
+  JokesOnYou, 
+  SandstoneEx,
+  Sandstone,
+  Sandpaper,
+  Sandcastle
+];
 
 const Typography = () => {
   // Typography playground state
   const [playgroundText, setPlaygroundText] = useState('ABCDE FGHIJK LMNOP QRS TUVWXYZ');
+  const [fontFamily, setFontFamily] = useState('Sandpaper2');
   const [fontWeight, setFontWeight] = useState('400');
   const [fontStyle, setFontStyle] = useState('normal');
   const [fontSize, setFontSize] = useState(48);
   const [letterSpacing, setLetterSpacing] = useState(0);
   const [lineHeight, setLineHeight] = useState(1.2);
   const [textColor, setTextColor] = useState('#d4af37');
+  const [lightboxImage, setLightboxImage] = useState(null);
+  const [lightboxAlt, setLightboxAlt] = useState('');
+  const carouselRef = useRef(null);
+  const isScrolling = useRef(false);
+
+  // Create duplicated items for infinite loop (20 sets for seamless infinite scroll)
+  const duplicatedItems = Array(20).fill(cardDesignItems).flat();
+
+  // Calculate set width
+  const getSetWidth = () => {
+    const carousel = carouselRef.current;
+    if (!carousel) return 0;
+    const itemWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
+    const gap = 24; // 1.5rem = 24px
+    return cardDesignItems.length * (itemWidth + gap);
+  };
+
+  // Scroll left by 0.25 * setWidth
+  const scrollLeft = () => {
+    const carousel = carouselRef.current;
+    if (!carousel || isScrolling.current) return;
+    const setWidth = getSetWidth();
+    const scrollAmount = setWidth * 0.25;
+    carousel.scrollBy({
+      left: -scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
+  // Scroll right by 0.25 * setWidth
+  const scrollRight = () => {
+    const carousel = carouselRef.current;
+    if (!carousel || isScrolling.current) return;
+    const setWidth = getSetWidth();
+    const scrollAmount = setWidth * 0.25;
+    carousel.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    // Set initial scroll position to the middle set (set 5 out of 10)
+    const scrollToMiddle = () => {
+      const itemWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
+      const gap = 24; // 1.5rem = 24px
+      const setWidth = cardDesignItems.length * (itemWidth + gap);
+      const middleSetStart = setWidth * 18.8; // Start at set 10 (middle of 5 sets)
+      carousel.scrollLeft = middleSetStart;
+    };
+
+    // Wait for images to load before setting scroll position
+    const timer = setTimeout(scrollToMiddle, 100);
+
+    const handleScroll = () => {
+      if (isScrolling.current) return;
+      
+      requestAnimationFrame(() => {
+        if (isScrolling.current) return;
+        
+        // const itemWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
+        // const gap = 24;
+        // const setWidth = cardDesignItems.length * (itemWidth + gap);
+        // const scrollLeft = carousel.scrollLeft;
+        // const middleSet = 5; // Middle set out of 10
+
+        // // If scrolled near the end (past set 8), jump to equivalent position in middle set
+        // if (scrollLeft >= setWidth * 8.5) {
+        //   isScrolling.current = true;
+        //   const offset = scrollLeft - setWidth * 8;
+        //   carousel.scrollLeft = setWidth * middleSet + offset;
+        //   setTimeout(() => {
+        //     isScrolling.current = false;
+        //   }, 10);
+        // }
+        // // If scrolled near the beginning (before set 2), jump to equivalent position in middle set
+        // // This allows seamless left scrolling
+        // else if (scrollLeft <= setWidth * 1.5 && scrollLeft >= 0) {
+        //   isScrolling.current = true;
+        //   const offset = scrollLeft;
+        //   carousel.scrollLeft = setWidth * middleSet + offset;
+        //   setTimeout(() => {
+        //     isScrolling.current = false;
+        //   }, 10);
+        // }
+      });
+    };
+
+    carousel.addEventListener('scroll', handleScroll);
+
+    return () => {
+      clearTimeout(timer);
+      carousel.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <section id="typography" className="portfolio-section">
       <div className="container">
-        <h2 className="section-title">Typography Playground</h2>
+        <h2 className="section-title">Typography & Card Design Works</h2>
         
-        <div className="typography-playground">
-          <p className="playground-subtitle">Test the Sandpaper2 font family</p>
+        <div className="typography-content-wrapper">
+          <div className="typography-gallery">
+            <div className="carousel-wrapper">
+              <button 
+                className="carousel-arrow carousel-arrow-left" 
+                onClick={scrollLeft}
+                aria-label="Scroll left"
+              >
+                ‹
+              </button>
+              <div className="carousel-container" ref={carouselRef}>
+                {duplicatedItems.map((item, index) => {
+                  const originalIndex = index % cardDesignItems.length;
+                  const setNumber = Math.floor(index / cardDesignItems.length);
+                  return (
+                    <div
+                      key={`${originalIndex}-${setNumber}`}
+                      className="carousel-item"
+                      onClick={() => {
+                        setLightboxImage(item);
+                        setLightboxAlt(`Card Design ${originalIndex + 1}`);
+                      }}
+                    >
+                      <img 
+                        src={item} 
+                        alt={`Card Design ${originalIndex + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <button 
+                className="carousel-arrow carousel-arrow-right" 
+                onClick={scrollRight}
+                aria-label="Scroll right"
+              >
+                ›
+              </button>
+            </div>
+          </div>
           
-          <div className="playground-container">
+          <div className="typography-playground">
+            <h3 className="playground-subtitle">Typography Playground</h3>
+            
+            <div className="playground-container">
             <div className="playground-controls">
               <div className="control-group">
                 <label htmlFor="playground-text">Text</label>
@@ -30,6 +190,19 @@ const Typography = () => {
                   className="playground-input"
                   placeholder="Enter text to preview"
                 />
+              </div>
+
+              <div className="control-group">
+                <label htmlFor="font-family">Font Family</label>
+                <select
+                  id="font-family"
+                  value={fontFamily}
+                  onChange={(e) => setFontFamily(e.target.value)}
+                  className="playground-select"
+                >
+                  <option value="Sandpaper2">Sandpaper2</option>
+                  <option value="SandcastleTest">SandcastleTest</option>
+                </select>
               </div>
 
               <div className="control-group">
@@ -129,7 +302,7 @@ const Typography = () => {
               <div
                 className="preview-text"
                 style={{
-                  fontFamily: "'Sandpaper2', sans-serif",
+                  fontFamily: `'${fontFamily}', sans-serif`,
                   fontWeight: fontWeight,
                   fontStyle: fontStyle,
                   fontSize: `${fontSize}px`,
@@ -143,7 +316,7 @@ const Typography = () => {
               <div className="preview-info">
                 <div className="info-item">
                   <span className="info-label">Font:</span>
-                  <span className="info-value">Sandpaper2</span>
+                  <span className="info-value">{fontFamily}</span>
                 </div>
                 <div className="info-item">
                   <span className="info-label">Weight:</span>
@@ -172,8 +345,17 @@ const Typography = () => {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
+      <Lightbox 
+        image={lightboxImage} 
+        alt={lightboxAlt}
+        onClose={() => {
+          setLightboxImage(null);
+          setLightboxAlt('');
+        }}
+      />
     </section>
   );
 };
