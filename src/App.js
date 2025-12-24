@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Typography from './sections/Typography';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import IllustrativeWorks from './sections/IllustrativeWorks';
 import CeramicWorks from './sections/CeramicWorks';
@@ -39,7 +40,7 @@ function App() {
       
       <Typography />
       
-    
+      <Contact />
       
       <Footer />
     </div>
