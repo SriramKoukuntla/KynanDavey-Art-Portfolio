@@ -8,7 +8,7 @@ import FrogYoga from '../assets/Art/CeramicWorks/FrogYoga.png';
 import HeartBrokenFrog from '../assets/Art/CeramicWorks/HeartBrokenFrog.png';
 import Purfume from '../assets/Art/CeramicWorks/Purfume.png';
 import Sunflower from '../assets/Art/CeramicWorks/Sunflower.png';
-import Trunk from '../assets/Art/CeramicWorks/Trunk.png';   
+import Trunk from '../assets/Art/CeramicWorks/Trunk.png';
 
 const items = [Cups, Bottle, FrogsInTree, FrogYoga, HeartBrokenFrog, Purfume, Sunflower, Trunk];
 

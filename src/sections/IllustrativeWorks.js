@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Lightbox from '../components/Lightbox';
+import useLightbox from '../hooks/useLightbox';
 import powerRangers from '../assets/Art/IllustrativeWorks/PowerRangers.png';
 import fractured from '../assets/Art/IllustrativeWorks/Fractured.png';
 import cuteDucks from '../assets/Art/IllustrativeWorks/CuteDucks.png';
 import postIts from '../assets/Art/IllustrativeWorks/PostIts.png';
 
 const IllustrativeWorks = () => {
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const [lightboxAlt, setLightboxAlt] = useState('');
-
-  const handleImageClick = (imageSrc, imageAlt) => {
-    setLightboxImage(imageSrc);
-    setLightboxAlt(imageAlt);
-  };
-
-  const closeLightbox = () => {
-    setLightboxImage(null);
-    setLightboxAlt('');
-  };
+  const { lightboxImage, lightboxAlt, handleImageClick, closeLightbox } = useLightbox();
 
   return (
     <>

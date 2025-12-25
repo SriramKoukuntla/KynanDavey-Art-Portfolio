@@ -100,4 +100,3 @@ const Masonry = ({ items, enableLightbox = false }) => {
 };
 
 export default Masonry;
-

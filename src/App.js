@@ -9,7 +9,6 @@ import CeramicWorks from './sections/CeramicWorks';
 import ThreeColumnPainting from './sections/ThreeColumnPainting';
 import Photography from './sections/Photography';
 
-
 function App() {
   useEffect(() => {
     // Add loading animation
@@ -21,27 +20,16 @@ function App() {
     }, 100);
   }, []);
 
-
   return (
     <div className="App">
       <Navbar />
-
       <Hero />
-      
-
       <IllustrativeWorks />
-      
       <CeramicWorks />
-      
-      
       <ThreeColumnPainting />
-
       <Photography />
-      
       <Typography />
-      
       <Contact />
-      
       <Footer />
     </div>
   );

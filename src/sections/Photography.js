@@ -4,7 +4,6 @@ import Masonry from '../components/Masonry';
 import BirdsEating from '../assets/Art/PhotographicAndPhotoManipulationWorks/BirdsEating.png';
 import BirdsFlying from '../assets/Art/PhotographicAndPhotoManipulationWorks/BirdsFlying.png';
 import Branches from '../assets/Art/PhotographicAndPhotoManipulationWorks/Branches.png';
-// import Eclipse from '../assets/Art/PhotographicAndPhotoManipulationWorks/Eclipse.png';
 import Flame from '../assets/Art/PhotographicAndPhotoManipulationWorks/Flame.png';
 import Graphiti1 from '../assets/Art/PhotographicAndPhotoManipulationWorks/Graphiti1.png';
 import Graphiti2 from '../assets/Art/PhotographicAndPhotoManipulationWorks/Graphiti2.png';
@@ -25,4 +24,3 @@ const Photography = () => {
 };
 
 export default Photography;
-

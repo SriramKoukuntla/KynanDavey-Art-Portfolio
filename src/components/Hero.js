@@ -1,16 +1,10 @@
 import React from 'react';
+import { scrollToSection } from '../utils/scrollToSection';
 
 const Hero = () => {
   const handleScrollToPortfolio = (e) => {
     e.preventDefault();
-    const element = document.getElementById('illustrative');
-    if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
+    scrollToSection('illustrative');
   };
 
   return (
@@ -30,5 +24,4 @@ const Hero = () => {
 };
 
 export default Hero;
-
 

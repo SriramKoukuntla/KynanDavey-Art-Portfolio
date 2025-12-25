@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Lightbox from '../components/Lightbox';
+import useLightbox from '../hooks/useLightbox';
 
 // Import Oil Paintings
 import Hunger from '../assets/Art/OilPaintingWorks/Hunger.png';
@@ -15,22 +16,11 @@ import DigitalArt2 from '../assets/Art/GameDesign&DigitalArt/DigitalArt2.png';
 import DigitalArt3 from '../assets/Art/GameDesign&DigitalArt/DigitalArt3.png';
 
 const ThreeColumnPainting = () => {
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const [lightboxAlt, setLightboxAlt] = useState('');
+  const { lightboxImage, lightboxAlt, handleImageClick, closeLightbox } = useLightbox();
 
   const oilPaintings = [SelfPastNFuture, Hunger];
   const acrylicPaintings = [Landscape, Blotches];
   const graphicAndGameDesign = [DigitalArt2, DigitalArt1, DigitalArt3];
-
-  const handleImageClick = (imageSrc, imageAlt) => {
-    setLightboxImage(imageSrc);
-    setLightboxAlt(imageAlt);
-  };
-
-  const closeLightbox = () => {
-    setLightboxImage(null);
-    setLightboxAlt('');
-  };
 
   const renderColumn = (title, items, columnClass) => {
     // Special layout for Graphic and Game Design with overlapping images
@@ -40,7 +30,7 @@ const ThreeColumnPainting = () => {
           <h2 className="portfolio-column-title">{title}</h2>
           <div className="graphic-game-overlap-container">
             {items.map((item, index) => {
-              const imageSrc = typeof item === 'string' ? item : item;
+              const imageSrc = item;
               const imageAlt = `${title} ${index + 1}`;
               
               // Positioning for overlapping effect
@@ -88,7 +78,7 @@ const ThreeColumnPainting = () => {
         <h2 className="portfolio-column-title">{title}</h2>
         <div className="portfolio-column-masonry">
           {items.map((item, index) => {
-            const imageSrc = typeof item === 'string' ? item : item;
+            const imageSrc = item;
             const imageAlt = `${title} ${index + 1}`;
             
             return (
@@ -138,4 +128,3 @@ const ThreeColumnPainting = () => {
 };
 
 export default ThreeColumnPainting;
-

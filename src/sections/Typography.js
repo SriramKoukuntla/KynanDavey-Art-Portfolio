@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Lightbox from '../components/Lightbox';
+import useLightbox from '../hooks/useLightbox';
 
 import CardDesign2 from '../assets/Art/TypographicWorks/CardDesign2.png';
 import HisokaCards from '../assets/Art/TypographicWorks/HisokaCards.png';
@@ -29,8 +30,7 @@ const Typography = () => {
   const [letterSpacing, setLetterSpacing] = useState(0);
   const [lineHeight, setLineHeight] = useState(1.2);
   const [textColor, setTextColor] = useState('#d4af37');
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const [lightboxAlt, setLightboxAlt] = useState('');
+  const { lightboxImage, lightboxAlt, handleImageClick, closeLightbox } = useLightbox();
   const carouselRef = useRef(null);
   const isScrolling = useRef(false);
 
@@ -91,32 +91,7 @@ const Typography = () => {
       
       requestAnimationFrame(() => {
         if (isScrolling.current) return;
-        
-        // const itemWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
-        // const gap = 24;
-        // const setWidth = cardDesignItems.length * (itemWidth + gap);
-        // const scrollLeft = carousel.scrollLeft;
-        // const middleSet = 5; // Middle set out of 10
-
-        // // If scrolled near the end (past set 8), jump to equivalent position in middle set
-        // if (scrollLeft >= setWidth * 8.5) {
-        //   isScrolling.current = true;
-        //   const offset = scrollLeft - setWidth * 8;
-        //   carousel.scrollLeft = setWidth * middleSet + offset;
-        //   setTimeout(() => {
-        //     isScrolling.current = false;
-        //   }, 10);
-        // }
-        // // If scrolled near the beginning (before set 2), jump to equivalent position in middle set
-        // // This allows seamless left scrolling
-        // else if (scrollLeft <= setWidth * 1.5 && scrollLeft >= 0) {
-        //   isScrolling.current = true;
-        //   const offset = scrollLeft;
-        //   carousel.scrollLeft = setWidth * middleSet + offset;
-        //   setTimeout(() => {
-        //     isScrolling.current = false;
-        //   }, 10);
-        // }
+        // Scroll handler for future infinite scroll implementation
       });
     };
 
@@ -151,10 +126,7 @@ const Typography = () => {
                     <div
                       key={`${originalIndex}-${setNumber}`}
                       className="carousel-item"
-                      onClick={() => {
-                        setLightboxImage(item);
-                        setLightboxAlt(`Card Design ${originalIndex + 1}`);
-                      }}
+                      onClick={() => handleImageClick(item, `Card Design ${originalIndex + 1}`)}
                     >
                       <img 
                         src={item} 
@@ -351,15 +323,10 @@ const Typography = () => {
       <Lightbox 
         image={lightboxImage} 
         alt={lightboxAlt}
-        onClose={() => {
-          setLightboxImage(null);
-          setLightboxAlt('');
-        }}
+        onClose={closeLightbox}
       />
     </section>
   );
 };
 
 export default Typography;
-
-

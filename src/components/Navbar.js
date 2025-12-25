@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { scrollToSection } from '../utils/scrollToSection';
+import { NAV_LINKS, SECTION_IDS } from '../constants/navigation';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,8 +12,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 100);
 
       // Update active section based on scroll position
-      const sections = ['home', 'illustrative', 'ceramic', 'painting', 'photography', 'typography', 'contact'];
-      const current = sections.find(section => {
+      const current = SECTION_IDS.find(section => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -31,33 +32,16 @@ const Navbar = () => {
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
+    scrollToSection(sectionId);
     setIsMenuOpen(false);
   };
-
-  const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'illustrative', label: 'Illustrative' },
-    { id: 'ceramic', label: 'Ceramic' },
-    { id: 'painting', label: 'Painting' },
-    { id: 'photography', label: 'Photography' },
-    { id: 'typography', label: 'Typography' },
-    { id: 'contact', label: 'Contact' }
-  ];
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <div className="logo">Kynan Davey</div>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-          {navLinks.map(link => (
+          {NAV_LINKS.map(link => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
@@ -83,5 +67,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

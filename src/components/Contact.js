@@ -12,19 +12,8 @@ const Contact = () => {
           <div className="contact-info">
             <div className="contact-item">
               <span className="contact-label">Email:</span>
-              <a href="mailto:contact@kynandavey.com" className="contact-link">
-                contact@kynandavey.com
-              </a>
-            </div>
-            <div className="contact-item">
-              <span className="contact-label">Instagram:</span>
-              <a 
-                href="https://instagram.com/kynandavey" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="contact-link"
-              >
-                @kynandavey
+              <a href="mailto:kynandaveyart@gmail.com" className="contact-link">
+              kynandaveyart@gmail.com
               </a>
             </div>
           </div>
