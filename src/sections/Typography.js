@@ -74,17 +74,52 @@ const Typography = () => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    // Set initial scroll position to the middle set (set 5 out of 10)
+    // Set initial scroll position to the middle of the entire scrollable area
     const scrollToMiddle = () => {
-      const itemWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
-      const gap = 24; // 1.5rem = 24px
-      const setWidth = cardDesignItems.length * (itemWidth + gap);
-      const middleSetStart = setWidth * 18.8; // Start at set 10 (middle of 5 sets)
-      carousel.scrollLeft = middleSetStart;
+      // Calculate the middle position based on actual scroll width
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      const middlePosition = maxScroll / 2;
+      carousel.scrollLeft = middlePosition;
     };
 
     // Wait for images to load before setting scroll position
-    const timer = setTimeout(scrollToMiddle, 100);
+    // Use a longer timeout and also wait for images to load
+    const images = carousel.querySelectorAll('img');
+    let imagesLoaded = 0;
+    const totalImages = images.length;
+    
+    if (totalImages === 0) {
+      // Fallback if no images found yet
+      const timer = setTimeout(scrollToMiddle, 500);
+      return () => clearTimeout(timer);
+    }
+    
+    const checkAllLoaded = () => {
+      imagesLoaded++;
+      if (imagesLoaded === totalImages) {
+        // All images loaded, now scroll to middle
+        setTimeout(scrollToMiddle, 100);
+      }
+    };
+    
+    const imageCleanup = [];
+    images.forEach((img) => {
+      if (img.complete) {
+        checkAllLoaded();
+      } else {
+        img.addEventListener('load', checkAllLoaded);
+        img.addEventListener('error', checkAllLoaded);
+        imageCleanup.push(() => {
+          img.removeEventListener('load', checkAllLoaded);
+          img.removeEventListener('error', checkAllLoaded);
+        });
+      }
+    });
+    
+    // Fallback timeout in case some images don't load
+    const timer = setTimeout(() => {
+      scrollToMiddle();
+    }, 2000);
 
     const handleScroll = () => {
       if (isScrolling.current) return;
@@ -100,6 +135,7 @@ const Typography = () => {
     return () => {
       clearTimeout(timer);
       carousel.removeEventListener('scroll', handleScroll);
+      imageCleanup.forEach(cleanup => cleanup());
     };
   }, []);
 
