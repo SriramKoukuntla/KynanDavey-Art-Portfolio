@@ -191,7 +191,7 @@ code {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 135vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1256,6 +1256,13 @@ code {
     .masonry-container {
         column-count: 1;
         column-gap: 1rem;
+    }
+}
+
+/* Default 75% zoom for laptops and larger screens */
+@media (min-width: 1024px) {
+    html {
+        zoom: 0.75;
     }
 }
 
