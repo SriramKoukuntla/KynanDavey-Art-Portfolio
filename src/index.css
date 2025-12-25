@@ -191,7 +191,7 @@ code {
 
 /* Hero Section */
 .hero {
-    min-height: 135vh;
+    min-height: 115vh;
     display: flex;
     align-items: center;
     justify-content: center;
