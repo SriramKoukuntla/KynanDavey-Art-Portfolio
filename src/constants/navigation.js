@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
   { id: 'home', label: 'Home' },
-  { id: 'portfolio', label: 'Protfolio' },
+  { id: 'portfolio', label: 'Portfolio' },
   { id: 'products', label: 'Products' }
 ];
 

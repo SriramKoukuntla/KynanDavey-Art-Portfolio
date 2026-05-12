@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import ArtPage from './pages/ArtPage';
 import ProductsPage from './pages/ProductsPage';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Footer from './sections/Footer';
 
 function App() {
   useEffect(() => {
@@ -22,15 +22,14 @@ function App() {
     <BrowserRouter>
       <div className="App">
       <Navbar />
-      <Navbar />
       <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/art" element={<ArtPage />} />
           <Route path="/products" element={<ProductsPage />} />
         </Routes>
       </div>
-      <Contact></Contact>
-      <Footer></Footer>
+      <Contact/>
+      <Footer/>
     </BrowserRouter>
   );
 }
