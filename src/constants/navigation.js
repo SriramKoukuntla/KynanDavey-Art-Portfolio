@@ -1,11 +1,16 @@
 export const NAV_LINKS = [
   { id: 'home', label: 'Home' },
-  { id: 'illustrative', label: 'Illustrative' },
-  { id: 'ceramic', label: 'Ceramic' },
-  { id: 'painting', label: 'Painting' },
-  { id: 'photography', label: 'Photography' },
-  { id: 'typography', label: 'Typography' },
-  { id: 'contact', label: 'Contact' }
+  { id: 'portfolio', label: 'Protfolio' },
+  { id: 'products', label: 'Products' }
+];
+
+/** Section IDs rendered on `/art` (portfolio categories only). */
+export const ART_SECTION_IDS = [
+  'illustrative',
+  'ceramic',
+  'painting',
+  'photography',
+  'typography'
 ];
 
 export const SECTION_IDS = NAV_LINKS.map(link => link.id);

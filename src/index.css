@@ -124,6 +124,7 @@ code {
     font-weight: 700;
     color: var(--accent-color);
     letter-spacing: 1px;
+    text-decoration: none;
 }
 
 .nav-menu {
@@ -247,6 +248,15 @@ code {
     animation: fadeInUp 1s ease 0.4s both;
 }
 
+.hero-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .cta-button {
     display: inline-block;
     padding: 15px 40px;
@@ -266,6 +276,21 @@ code {
     color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.hero-cta-row .cta-button:nth-child(2) {
+    animation-delay: 0.65s;
+}
+
+.products-intro {
+    padding-top: 140px;
+}
+
+.products-placeholder {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 560px;
 }
 
 /* Portfolio Sections */

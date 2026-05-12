@@ -1,12 +1,7 @@
 import React from 'react';
-import { scrollToSection } from '../utils/scrollToSection';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  const handleScrollToPortfolio = (e) => {
-    e.preventDefault();
-    scrollToSection('illustrative');
-  };
-
   return (
     <section id="home" className="hero">
       <div className="hero-content">
@@ -15,13 +10,17 @@ const Hero = () => {
         <p className="hero-description">
           A collection of illustrative, ceramic, painting, photographic, and graphic design works
         </p>
-        <a href="#illustrative" className="cta-button" onClick={handleScrollToPortfolio}>
-          View Portfolio
-        </a>
+        <div className="hero-cta-row">
+          <Link to="/art" className="cta-button">
+            View Portfolio
+          </Link>
+          <Link to="/products" className="cta-button">
+            View Products
+          </Link>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Hero;
-
