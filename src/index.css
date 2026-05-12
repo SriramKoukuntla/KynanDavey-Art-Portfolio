@@ -293,6 +293,67 @@ code {
     max-width: 560px;
 }
 
+.product-feature {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+    gap: 4rem;
+    align-items: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(15, 15, 15, 0.95));
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.product-feature-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.02) 60%, transparent 70%);
+}
+
+.product-feature-image img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.55));
+}
+
+.product-feature-content {
+    max-width: 560px;
+}
+
+.product-kicker {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.product-feature-content h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.product-feature-content p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+.product-buy-button {
+    margin-top: 1rem;
+    animation: none;
+}
+
 /* Portfolio Sections */
 .portfolio-section {
     padding: 100px 0;
@@ -1143,6 +1204,20 @@ code {
         font-size: 2rem;
     }
 
+    .product-feature {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .product-feature-content {
+        max-width: none;
+    }
+
+    .product-feature-content h3 {
+        font-size: 2.75rem;
+    }
+
     .gallery-grid {
         grid-template-columns: 1fr;
     }
@@ -1263,6 +1338,18 @@ code {
 
     .section-title {
         font-size: 1.75rem;
+    }
+
+    .product-feature {
+        padding: 1.5rem;
+    }
+
+    .product-feature-image {
+        padding: 1rem;
+    }
+
+    .product-feature-content h3 {
+        font-size: 2.25rem;
     }
 
     .contact-content {
