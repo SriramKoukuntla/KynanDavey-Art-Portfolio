@@ -12,7 +12,6 @@ const ProductsPage = () => {
           </p>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

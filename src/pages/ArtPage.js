@@ -6,7 +6,6 @@ import ThreeColumnPainting from '../sections/ThreeColumnPainting';
 import Photography from '../sections/Photography';
 import Typography from '../sections/Typography';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 import { scrollToSection } from '../utils/scrollToSection';
 
 const ArtPage = () => {
@@ -28,8 +27,6 @@ const ArtPage = () => {
       <ThreeColumnPainting />
       <Photography />
       <Typography />
-      <Contact />
-      <Footer />
     </>
   );
 };

@@ -7,8 +7,6 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <Contact />
-      <Footer />
     </>
   );
 };

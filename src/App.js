@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import ArtPage from './pages/ArtPage';
 import ProductsPage from './pages/ProductsPage';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
   useEffect(() => {
@@ -27,6 +29,8 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
         </Routes>
       </div>
+      <Contact></Contact>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }
