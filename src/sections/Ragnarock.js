@@ -1,5 +1,9 @@
 import React from 'react';
+import StripeBuyButton from '../components/StripeBuyButton';
 import ragnarockBox from '../assets/Products/Ragnarock/BicycleCardsBox.png';
+
+const ragnarockInquiryHref =
+  'mailto:kynandaveyart@gmail.com?subject=Ragnarock%20Card%20Product%20Inquiry';
 
 const Ragnarock = () => {
   return (
@@ -20,12 +24,11 @@ const Ragnarock = () => {
           Loki's mischief, and the mythic fire of the final battle to
           create a dark, cinematic card experience.
         </p>
-        <a
-          className="cta-button product-buy-button"
-          href="mailto:kynandaveyart@gmail.com?subject=Ragnarock%20Card%20Product%20Inquiry"
-        >
-          Buy Now
-        </a>
+        <StripeBuyButton
+          buyButtonId={process.env.REACT_APP_STRIPE_RAGNAROCK_BUY_BUTTON_ID}
+          publishableKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
+          fallbackHref={ragnarockInquiryHref}
+        />
       </div>
     </article>
   );

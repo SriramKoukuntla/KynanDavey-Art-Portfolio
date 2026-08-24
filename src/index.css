@@ -354,6 +354,14 @@ code {
     animation: none;
 }
 
+.stripe-buy-button-wrapper {
+    min-height: 44px;
+}
+
+.stripe-buy-button-wrapper stripe-buy-button {
+    display: inline-block;
+}
+
 /* Portfolio Sections */
 .portfolio-section {
     padding: 100px 0;
